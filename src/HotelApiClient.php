@@ -38,6 +38,7 @@ use hotelbeds\hotel_api_sdk\messages\BookingListRS;
 use hotelbeds\hotel_api_sdk\helpers\BookingList;
 
 use hotelbeds\hotel_api_sdk\model\AuditData;
+use hotelbeds\hotel_api_sdk\types\ApiUri;
 use hotelbeds\hotel_api_sdk\types\ApiVersion;
 use hotelbeds\hotel_api_sdk\types\HotelSDKException;
 use hotelbeds\hotel_api_sdk\messages\ApiRequest;
@@ -55,6 +56,7 @@ use Zend\Uri\UriFactory;
  * @method BookingConfirmRS BookingConfirm(Booking $bookingData) Method allows confirmation of the rate keys selected.  There is an option of confirming more than one rate key for the same hotel/room/board.
  * @method BookingCancellationRS BookingCancellation( $bookingId ) Method can cancel confirmed booking
  * @method BookingListRS BookingList( BookingList $bookData ) To get a list of bookings
+ * @method CountriesRS CountryList( Paginatable $data ) To get a list of countries
  */
 class HotelApiClient
 {
@@ -106,7 +108,8 @@ class HotelApiClient
         }
         UriFactory::registerScheme("https","hotelbeds\\hotel_api_sdk\\types\\ApiUri");
         $this->apiUri = UriFactory::factory($url);
-        $this->apiUri->prepare($version);
+        $this->apiUri->setVersion($version);
+//        $this->apiUri->prepare($version);
     }
 
     /**

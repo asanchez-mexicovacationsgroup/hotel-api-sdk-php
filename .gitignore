@@ -2,3 +2,4 @@
 vendor
 output
 docs
+tests/HotelApiClient.ini

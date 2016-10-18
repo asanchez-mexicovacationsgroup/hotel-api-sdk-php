@@ -13,22 +13,40 @@ use StringTemplate;
 
 /**
  * Class ApiUri
+ *
  * @package hotelbeds\hotel_api_sdk\types
  */
 class ApiUri extends Http
 {
-    const BASE_PATH='/hotel-api';
+    public static $HOTEL_BOOKING_BASE_PATH = '/hotel-api';
+    public static $HOTEL_CONTENT_BASE_PATH = '/hotel-content-api';
+
     const API_URI_FORMAT = '{basepath}/{version}';
 
     /**
-     * Prepare URL for the operation
-     * @param ApiVersion $version Version of API used for client
+     * @var ApiVersion
      */
-    public function prepare(ApiVersion $version)
+    private $apiVersion;
+
+    /**
+     * @param ApiVersion $apiVersion
+     */
+    public function setVersion(ApiVersion $apiVersion)
+    {
+        $this->apiVersion = $apiVersion;
+    }
+
+    /**
+     * Prepare URL for the operation
+     *
+     * @param string $basePath
+     */
+    public function prepare($basePath)
     {
         $strSubs = new StringTemplate\Engine;
-        $this->setPath($strSubs->render(self::API_URI_FORMAT,
-            ["basepath"  => self::BASE_PATH,
-             "version"   => $version->getVersion()]));
+        $this->setPath($strSubs->render(self::API_URI_FORMAT, [
+            "basepath" => $basePath,
+            "version" => $this->apiVersion->getVersion()
+        ]));
     }
 }

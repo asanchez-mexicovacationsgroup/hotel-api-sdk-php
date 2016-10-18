@@ -18,4 +18,6 @@ interface ApiCallTypes
     const BOOKING = "bookings";
     const CHECK_AVAIL = "checkrates";
     const STATUS = "status";
+
+    const COUNTRIES = 'locations/countries';
 }

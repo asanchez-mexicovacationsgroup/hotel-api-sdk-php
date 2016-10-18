@@ -12,5 +12,8 @@
         <testsuite name="booking">
             <file>tests/BookingApiTest.php</file>
         </testsuite>
+        <testsuite name="content">
+            <file>tests/ContentApiTest.php</file>
+        </testsuite>
     </testsuites>
 </phpunit>

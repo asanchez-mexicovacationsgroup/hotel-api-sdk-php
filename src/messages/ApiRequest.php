@@ -43,8 +43,22 @@ abstract class ApiRequest implements ApiCallTypes
     public function __construct(ApiUri $baseUri, $operation)
     {
         $this->request = new Request();
+
+        $baseUri->prepare($this->getBasePath());
         $this->baseUri = new Http($baseUri);
         $this->baseUri->setPath($baseUri->getPath()."/".$operation);
+    }
+
+    /**
+     * The base path for this request
+     *
+     * @see ApiUri$HOTEL_BOOKING_BASE_PATH @see  ApiUri$HOTEL_CONTENT_BASE_PATH
+     *
+     * @return string
+     */
+    protected function getBasePath()
+    {
+        return ApiUri::$HOTEL_BOOKING_BASE_PATH;
     }
 
     /**
