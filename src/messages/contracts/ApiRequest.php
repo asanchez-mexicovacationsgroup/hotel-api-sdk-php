@@ -6,7 +6,7 @@
  * Time: 3:13 AM
  */
 
-namespace hotelbeds\hotel_api_sdk\messages;
+namespace hotelbeds\hotel_api_sdk\messages\contracts;
 
 use hotelbeds\hotel_api_sdk\helpers\ApiHelper;
 use hotelbeds\hotel_api_sdk\types\ApiUri;
@@ -47,6 +47,8 @@ abstract class ApiRequest implements ApiCallTypes
         $baseUri->prepare($this->getBasePath());
         $this->baseUri = new Http($baseUri);
         $this->baseUri->setPath($baseUri->getPath()."/".$operation);
+
+        $this->request->setMethod(Request::METHOD_GET);
     }
 
     /**

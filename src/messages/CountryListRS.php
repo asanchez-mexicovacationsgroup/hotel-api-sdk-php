@@ -8,21 +8,40 @@
 
 namespace hotelbeds\hotel_api_sdk\messages;
 
-use hotelbeds\hotel_api_sdk\model\AuditData;
+use hotelbeds\hotel_api_sdk\messages\contracts\ContentApiResponse;
+use hotelbeds\hotel_api_sdk\model\Country;
 
-class CountryListRS extends ApiResponse
+class CountryListRS extends ContentApiResponse
 {
-    public function __construct(array $rsData)
+
+    /**
+     * Return the data key for use in iterator
+     * @return string
+     */
+    protected function dataKey()
     {
-        parent::__construct($rsData);
-        $this->data = $rsData;
+        return 'countries';
     }
 
     /**
-     * @return AuditData Return class of audit
+     * Return the current element
+     * @link http://php.net/manual/en/iterator.current.php
+     * @return Country
+     * @since 5.0.0
      */
-    public function auditData()
+    public function current()
     {
-        return new AuditData($this->auditData);
+        return new Country($this->getData()[$this->position()]);
+    }
+
+    /**
+     * Return the key of the current element
+     * @link http://php.net/manual/en/iterator.key.php
+     * @return mixed scalar on success, or null on failure.
+     * @since 5.0.0
+     */
+    public function key()
+    {
+        return $this->getData()[$this->position()]['code'];
     }
 }

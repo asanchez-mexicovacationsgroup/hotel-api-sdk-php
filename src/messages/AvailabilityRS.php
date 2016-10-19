@@ -23,6 +23,7 @@
 
 namespace hotelbeds\hotel_api_sdk\messages;
 
+use hotelbeds\hotel_api_sdk\messages\contracts\ApiResponse;
 use hotelbeds\hotel_api_sdk\model\AuditData;
 use hotelbeds\hotel_api_sdk\model\Hotels;
 

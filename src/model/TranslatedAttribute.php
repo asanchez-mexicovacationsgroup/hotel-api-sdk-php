@@ -20,12 +20,12 @@ class TranslatedAttribute extends ApiModel
     public function __construct(array $data = null)
     {
         $this->validFields = [
-            'languageCode',
-            'content'
+            'languageCode' => 'string',
+            'content' => 'string'
         ];
 
         if ($data !== null) {
-            $this->fields = $data;
+            $this->sdkFields = $data;
         }
     }
 }

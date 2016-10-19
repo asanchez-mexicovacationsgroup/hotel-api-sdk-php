@@ -24,7 +24,7 @@ class BookingRoom extends ApiModel
         ];
 
         if ($rateKey !== null) {
-            $this->fields["rateKey"] = $rateKey;
+            $this->sdkFields["rateKey"] = $rateKey;
         }
     }
 }

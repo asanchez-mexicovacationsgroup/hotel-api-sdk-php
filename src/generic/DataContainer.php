@@ -29,7 +29,7 @@ abstract class DataContainer
     /**
      * @var array Array of data of all valid fields.
      */
-    protected $fields = [];
+    protected $sdkFields = [];
 
     /**
      * Setter magical method
@@ -46,7 +46,7 @@ abstract class DataContainer
         $type = $this->validFields[$field];
 
         if (empty($type))
-            $this->fields[$field] = $value;
+            $this->sdkFields[$field] = $value;
 
         if (is_object($value)) {
             if (get_class($value) !== $type)
@@ -57,7 +57,7 @@ abstract class DataContainer
         } else if (gettype($value) !== $type)
             throw new \Exception("Type error: Field $field needs $type type!");
 
-        $this->fields[$field] = $value;
+        $this->sdkFields[$field] = $value;
     }
 
     /**
@@ -71,8 +71,15 @@ abstract class DataContainer
         if (!empty($this->validFields) && !array_key_exists($field, $this->validFields))
             throw new FieldNotValid("$field not valid for this model");
 
-        if (array_key_exists($field, $this->fields))
-            return $this->fields[$field];
+        if (array_key_exists($field, $this->sdkFields)) {
+
+            if (class_exists($this->validFields[$field])) {
+                $class = $this->validFields[$field];
+                return new $class($this->sdkFields[$field]);
+            }
+
+            return $this->sdkFields[$field];
+        }
         return null;
     }
 
@@ -103,7 +110,7 @@ abstract class DataContainer
             }
 
             return $item;
-        }, $this->fields);
+        }, $this->sdkFields);
     }
 
 }

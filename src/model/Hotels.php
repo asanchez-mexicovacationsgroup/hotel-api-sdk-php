@@ -25,7 +25,7 @@ class Hotels extends ApiModel
         ];
 
         if ($data !== null) {
-            $this->fields = $data;
+            $this->sdkFields = $data;
         }
     }
 

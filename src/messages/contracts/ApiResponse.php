@@ -6,7 +6,7 @@
  * Time: 3:12 AM
  */
 
-namespace hotelbeds\hotel_api_sdk\messages;
+namespace hotelbeds\hotel_api_sdk\messages\contracts;
 
 /**
  * Class FieldNotExists

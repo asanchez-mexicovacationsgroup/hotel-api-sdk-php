@@ -73,7 +73,7 @@ class Rate extends ApiModel
 
         if ($data !== null)
         {
-            $this->fields = $data;
+            $this->sdkFields = $data;
         }
     }
 

@@ -23,6 +23,11 @@
 
 namespace hotelbeds\hotel_api_sdk;
 
+use hotelbeds\hotel_api_sdk\helpers\ContentApiParams;
+use hotelbeds\hotel_api_sdk\messages\BookingCancellationRS;
+use hotelbeds\hotel_api_sdk\messages\contracts\ApiRequest;
+use hotelbeds\hotel_api_sdk\messages\contracts\ApiResponse;
+use hotelbeds\hotel_api_sdk\messages\CountryListRS;
 use hotelbeds\hotel_api_sdk\messages\StatusRS;
 
 use hotelbeds\hotel_api_sdk\messages\AvailabilityRS;
@@ -41,7 +46,6 @@ use hotelbeds\hotel_api_sdk\model\AuditData;
 use hotelbeds\hotel_api_sdk\types\ApiUri;
 use hotelbeds\hotel_api_sdk\types\ApiVersion;
 use hotelbeds\hotel_api_sdk\types\HotelSDKException;
-use hotelbeds\hotel_api_sdk\messages\ApiRequest;
 
 use Zend\Http\Client;
 use Zend\Http\Request;
@@ -56,7 +60,7 @@ use Zend\Uri\UriFactory;
  * @method BookingConfirmRS BookingConfirm(Booking $bookingData) Method allows confirmation of the rate keys selected.  There is an option of confirming more than one rate key for the same hotel/room/board.
  * @method BookingCancellationRS BookingCancellation( $bookingId ) Method can cancel confirmed booking
  * @method BookingListRS BookingList( BookingList $bookData ) To get a list of bookings
- * @method CountriesRS CountryList( Paginatable $data ) To get a list of countries
+ * @method CountryListRS countryList( ContentApiParams $data ) To get a list of countries
  */
 class HotelApiClient
 {

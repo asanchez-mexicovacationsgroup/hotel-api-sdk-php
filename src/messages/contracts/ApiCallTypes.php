@@ -6,7 +6,7 @@
  * Time: 12:36 AM
  */
 
-namespace hotelbeds\hotel_api_sdk\messages;
+namespace hotelbeds\hotel_api_sdk\messages\contracts;
 
 /**
  * Interface ApiCallTypes

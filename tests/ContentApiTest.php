@@ -25,10 +25,14 @@
 use hotelbeds\hotel_api_sdk\HotelApiClient;
 use hotelbeds\hotel_api_sdk\types\ApiVersion;
 use hotelbeds\hotel_api_sdk\types\ApiVersions;
-use hotelbeds\hotel_api_sdk\messages\BookingListRS;
+use hotelbeds\hotel_api_sdk\helpers\ContentApiParams;
+use hotelbeds\hotel_api_sdk\messages\CountryListRS;
 
 class ContentApiTest extends PHPUnit_Framework_TestCase
 {
+    /**
+     * @var HotelApiClient
+     */
     private $apiClient;
 
     protected function setUp()
@@ -46,7 +50,8 @@ class ContentApiTest extends PHPUnit_Framework_TestCase
     
     public function testCountryList()
     {
-        $data = new \hotelbeds\hotel_api_sdk\helpers\Paginatable();
+        $data = new ContentApiParams();
+        $data->fields = 'all';
         $data->language = 'ENG';
         $data->from = 0;
         $data->to = 100;
@@ -56,11 +61,11 @@ class ContentApiTest extends PHPUnit_Framework_TestCase
 
     /**
      * @depends testCountryList
+     * @param CountryListRS $countryListRS
      */
-
-    public function testCountryListRS(\hotelbeds\hotel_api_sdk\messages\CountryListRS $countryListRS)
+    public function testCountryListRS(CountryListRS $countryListRS)
     {
-        print_r($countryListRS);
+        
     }
 
     protected function tearDown()

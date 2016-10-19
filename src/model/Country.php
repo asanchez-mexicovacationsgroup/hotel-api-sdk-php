@@ -21,7 +21,13 @@ class Country extends ApiModel
     public function __construct(array $data = null)
     {
         $this->validFields = [
-            'code', 'isoCode', 'description'
+            'code' => 'string',
+            'isoCode' => 'string',
+            'description' => 'hotelbeds\\hotel_api_sdk\\model\\TranslatedAttribute'
         ];
+
+        if ($data !== null) {
+            $this->sdkFields = $data;
+        }
     }
 }

@@ -9,6 +9,7 @@
 namespace hotelbeds\hotel_api_sdk\messages;
 
 use hotelbeds\hotel_api_sdk\helpers\BookingList;
+use hotelbeds\hotel_api_sdk\messages\contracts\ApiRequest;
 use hotelbeds\hotel_api_sdk\types\ApiUri;
 use Zend\Http\Request;
 
