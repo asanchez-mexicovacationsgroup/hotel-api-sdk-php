@@ -79,9 +79,20 @@ abstract class DataContainer
 
         if (array_key_exists($field, $this->sdkFields)) {
 
-            if ($this->createObjectsOnGetter && class_exists($this->validFields[$field])) {
-                $class = $this->validFields[$field];
-                return new $class($this->sdkFields[$field]);
+            $value = $this->sdkFields[$field];
+            $targetClass = $this->validFields[$field];
+
+            // try to cast the object if specified
+            if ($this->createObjectsOnGetter && class_exists($targetClass)
+                // check if it is already created
+                && (is_array($value) || get_class($value) != $targetClass)) {
+
+                // if not we're gonna create it
+                $newValue = new $targetClass($value);
+                // and cache it for later access
+                $this->__set($field, $newValue);
+
+                return $newValue;
             }
 
             return $this->sdkFields[$field];
