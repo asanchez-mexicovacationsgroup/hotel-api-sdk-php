@@ -1,13 +1,17 @@
 <?php
 
+namespace hotelbeds\hotel_api_sdk\Tests;
+
 use \hotelbeds\hotel_api_sdk\model\Occupancy;
 use \hotelbeds\hotel_api_sdk\model\Pax;
 
-class OccupancyTest extends PHPUnit_Framework_TestCase
+class OccupancyTest extends SDKTestCase
 {
     private $occupancy;
     protected function setUp()
     {
+        parent::setUp();
+
         $this->occupancy = new Occupancy();
         $this->occupancy->adults = 1;
         $this->occupancy->children = 1;

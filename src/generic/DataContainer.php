@@ -32,6 +32,12 @@ abstract class DataContainer
     protected $sdkFields = [];
 
     /**
+     * @var bool True if you want DataContainter to create an object for fields with a class type.
+     * It will call the constructor of the target class with the value from $sdkFields
+     */
+    protected $createObjectsOnGetter = false;
+
+    /**
      * Setter magical method
      * @param $field string Name of field
      * @param $value mixed Value of field
@@ -62,7 +68,7 @@ abstract class DataContainer
 
     /**
      * Getter magical method
-     * @param $field Field name
+     * @param $field string Field name
      * @return mixed Return a value of field
      * @throws FieldNotValid If field does exists
      */
@@ -73,7 +79,7 @@ abstract class DataContainer
 
         if (array_key_exists($field, $this->sdkFields)) {
 
-            if (class_exists($this->validFields[$field])) {
+            if ($this->createObjectsOnGetter && class_exists($this->validFields[$field])) {
                 $class = $this->validFields[$field];
                 return new $class($this->sdkFields[$field]);
             }

@@ -28,6 +28,7 @@ use hotelbeds\hotel_api_sdk\messages\BookingCancellationRS;
 use hotelbeds\hotel_api_sdk\messages\contracts\ApiRequest;
 use hotelbeds\hotel_api_sdk\messages\contracts\ApiResponse;
 use hotelbeds\hotel_api_sdk\messages\CountryListRS;
+use hotelbeds\hotel_api_sdk\messages\DestinationListRS;
 use hotelbeds\hotel_api_sdk\messages\StatusRS;
 
 use hotelbeds\hotel_api_sdk\messages\AvailabilityRS;
@@ -61,6 +62,7 @@ use Zend\Uri\UriFactory;
  * @method BookingCancellationRS BookingCancellation( $bookingId ) Method can cancel confirmed booking
  * @method BookingListRS BookingList( BookingList $bookData ) To get a list of bookings
  * @method CountryListRS countryList( ContentApiParams $data ) To get a list of countries
+ * @method DestinationListRS destinationList(ContentApiParams $data) To get a list of destinations
  */
 class HotelApiClient
 {

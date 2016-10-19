@@ -1,12 +1,16 @@
 <?php
 
+namespace hotelbeds\hotel_api_sdk\Tests;
+
 use hotelbeds\hotel_api_sdk\model\Pax;
 
-class PaxTest extends PHPUnit_Framework_TestCase
+class PaxTest extends SDKTestCase
 {
     private $pax;
     protected function setUp()
     {
+        parent::setUp();
+
         $this->pax = new Pax(Pax::AD, 30);
         $this->pax->name = "Pax name";
         $this->pax->surname = "Pax surname";

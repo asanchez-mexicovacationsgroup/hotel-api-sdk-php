@@ -22,33 +22,19 @@
  * #L%
  */
 
-use hotelbeds\hotel_api_sdk\HotelApiClient;
-use hotelbeds\hotel_api_sdk\types\ApiVersion;
-use hotelbeds\hotel_api_sdk\types\ApiVersions;
+namespace hotelbeds\hotel_api_sdk\Tests;
+
+use hotelbeds\hotel_api_sdk\helpers\BookingList;
 use hotelbeds\hotel_api_sdk\messages\BookingListRS;
+use hotelbeds\hotel_api_sdk\types\HotelSDKException;
 
-class BookingApiTest extends PHPUnit_Framework_TestCase
+class BookingApiTest extends SDKTestCase
 {
-    private $apiClient;
-
-    protected function setUp()
-    {
-        $reader = new Zend\Config\Reader\Ini();
-        $config   = $reader->fromFile(__DIR__.'/HotelApiClient.ini');
-        $cfgApi = $config["apiclient"];
-
-        $this->apiClient = new HotelApiClient($cfgApi["url"],
-            $cfgApi["apikey"],
-            $cfgApi["sharedsecret"],
-            new ApiVersion(ApiVersions::V1_0),
-            $cfgApi["timeout"]);
-    }
-
     public function testBookingList()
     {
-        $rqBookingLst = new \hotelbeds\hotel_api_sdk\helpers\BookingList();
-        $rqBookingLst->start = DateTime::createFromFormat("Y-m-d", "2016-04-01");
-        $rqBookingLst->end = DateTime::createFromFormat("Y-m-d", "2016-04-30");
+        $rqBookingLst = new BookingList();
+        $rqBookingLst->start = \DateTime::createFromFormat("Y-m-d", "2016-04-01");
+        $rqBookingLst->end = \DateTime::createFromFormat("Y-m-d", "2016-04-30");
         $rqBookingLst->from = 1;
         $rqBookingLst->to = 25;
         return $this->apiClient->bookinglist($rqBookingLst);
@@ -84,7 +70,7 @@ class BookingApiTest extends PHPUnit_Framework_TestCase
     {
            try {
                 $this->apiClient->bookingCancellation($bookingId);
-           } catch (\hotelbeds\hotel_api_sdk\types\HotelSDKException $e) {
+           } catch (HotelSDKException $e) {
                echo "\n".$e->getMessage()."\n";
                $this->fail($e->getMessage());
            }

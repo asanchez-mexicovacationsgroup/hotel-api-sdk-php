@@ -6,19 +6,28 @@
  * Date: 11/4/2015
  * Time: 9:41 PM
  */
+namespace hotelbeds\hotel_api_sdk\Tests;
 
-class StayTest extends PHPUnit_Framework_TestCase
+
+use hotelbeds\hotel_api_sdk\model\Stay;
+
+class StayTest extends SDKTestCase
 {
+    /**
+     * @var Stay
+     */
     private $stay;
     protected function setUp()
     {
-        $this->stay = new \hotelbeds\hotel_api_sdk\model\Stay();
+        parent::setUp();
 
-        $dateIn = DateTime::createFromFormat("Y-m-d", date("Y-m-d"));
-        $dateOut = DateTime::createFromFormat("Y-m-d", date("Y-m-d"));;
+        $this->stay = new Stay();
+
+        $dateIn = \DateTime::createFromFormat("Y-m-d", date("Y-m-d"));
+        $dateOut = \DateTime::createFromFormat("Y-m-d", date("Y-m-d"));;
 
         $this->stay->checkIn = $dateIn;
-        $this->stay->checkOut = $dateOut->add(new DateInterval('P2W'));
+        $this->stay->checkOut = $dateOut->add(new \DateInterval('P2W'));
         $this->stay->shiftDays = 1;
         $this->stay->allowOnlyShift = false;
     }
@@ -31,9 +40,9 @@ class StayTest extends PHPUnit_Framework_TestCase
 
     public function testDates()
     {
-        $dateIn = DateTime::createFromFormat("Y-m-d", date("Y-m-d"));
-        $dateOut =  DateTime::createFromFormat("Y-m-d", date("Y-m-d"));
-        $dateOut->add(new DateInterval('P2W'));
+        $dateIn = \DateTime::createFromFormat("Y-m-d", date("Y-m-d"));
+        $dateOut =  \DateTime::createFromFormat("Y-m-d", date("Y-m-d"));
+        $dateOut->add(new \DateInterval('P2W'));
 
         $this->assertEquals($this->stay->checkIn->getTimestamp(), $dateIn->getTimestamp());
         $this->assertEquals($this->stay->checkOut->getTimestamp(), $dateOut->getTimestamp());

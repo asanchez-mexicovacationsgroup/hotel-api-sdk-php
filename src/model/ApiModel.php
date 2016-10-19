@@ -12,4 +12,10 @@ use hotelbeds\hotel_api_sdk\generic\DataContainer;
 
 abstract class ApiModel extends DataContainer
 {
+    public function __construct($data = null)
+    {
+        if ($data !== null) {
+            $this->sdkFields = $data;
+        }
+    }
 }

@@ -22,44 +22,31 @@
  * #L%
  */
 
+namespace hotelbeds\hotel_api_sdk\Tests;
+
+use hotelbeds\hotel_api_sdk\helpers\Availability;
+use hotelbeds\hotel_api_sdk\helpers\Booking;
 use hotelbeds\hotel_api_sdk\HotelApiClient;
 use hotelbeds\hotel_api_sdk\messages\BookingConfirmRS;
 use hotelbeds\hotel_api_sdk\messages\CheckRateRS;
+use hotelbeds\hotel_api_sdk\model\BookingRoom;
 use hotelbeds\hotel_api_sdk\model\Destination;
 use hotelbeds\hotel_api_sdk\model\Geolocation;
+use hotelbeds\hotel_api_sdk\model\Holder;
 use hotelbeds\hotel_api_sdk\model\Occupancy;
 use hotelbeds\hotel_api_sdk\model\Pax;
+use hotelbeds\hotel_api_sdk\model\PaymentData;
 use hotelbeds\hotel_api_sdk\model\Rate;
 use hotelbeds\hotel_api_sdk\model\Stay;
 use hotelbeds\hotel_api_sdk\types\ApiVersion;
 use hotelbeds\hotel_api_sdk\types\ApiVersions;
 use hotelbeds\hotel_api_sdk\messages\AvailabilityRS;
 use hotelbeds\hotel_api_sdk\messages\BookingListRS;
+use hotelbeds\hotel_api_sdk\types\HotelSDKException;
 
 
-class HotelApiClientTest extends PHPUnit_Framework_TestCase
+class HotelApiClientTest extends SDKTestCase
 {
-    /**
-     * @var HotelApiClient
-     */
-    private $apiClient;
-
-    protected function setUp()
-    {
-        date_default_timezone_set('Europe/Istanbul');
-
-        $reader = new Zend\Config\Reader\Ini();
-        $config   = $reader->fromFile(__DIR__.'/HotelApiClient.ini');
-        $cfgApi = $config["apiclient"];
-
-        $this->apiClient = new HotelApiClient($cfgApi["url"],
-                                              $cfgApi["apikey"],
-                                              $cfgApi["sharedsecret"],
-                                              new ApiVersion(ApiVersions::V1_0),
-                                              $cfgApi["timeout"]);
-
-    }
-
     /**
      * API Status Method test
      */
@@ -77,8 +64,8 @@ class HotelApiClientTest extends PHPUnit_Framework_TestCase
 
     public function testAvailRQ()
     {
-        $rqData = new \hotelbeds\hotel_api_sdk\helpers\Availability();
-        $startDate = new DateTime();
+        $rqData = new Availability();
+        $startDate = new \DateTime();
         $startDate->modify('+'.rand(1,30).' day');
         $endDate = clone $startDate;
         $endDate->modify('+'.rand(1,10).' day');
@@ -188,8 +175,6 @@ class HotelApiClientTest extends PHPUnit_Framework_TestCase
 
     public function testCheckRateRS(CheckRateRS $checkRS)
     {
-        print_r($checkRS->toArray());
-
         $this->assertNotEmpty($checkRS->hotel->totalNet);
         // FIXME : 19/10/2016 Hotel totalSellingRate not returned
 //        $this->assertNotEmpty($checkRS->hotel->totalSellingRate);
@@ -202,8 +187,8 @@ class HotelApiClientTest extends PHPUnit_Framework_TestCase
 
     public function testBookingConfirm(CheckRateRS $checkRS)
     {
-           $rqBookingConfirm = new \hotelbeds\hotel_api_sdk\helpers\Booking();
-           $rqBookingConfirm->holder = new \hotelbeds\hotel_api_sdk\model\Holder("Tomeu TEST", "Capo TEST");
+           $rqBookingConfirm = new Booking();
+           $rqBookingConfirm->holder = new Holder("Tomeu TEST", "Capo TEST");
            $rqBookingConfirm->language="CAS";
 
            // Use this iterator for multiple pax distributions, this example have one only pax distribution.
@@ -216,7 +201,7 @@ class HotelApiClientTest extends PHPUnit_Framework_TestCase
                if ($roomData->rates[0]["rateType"] !== "BOOKABLE")
                    continue;
 
-               $bookingRoom = new \hotelbeds\hotel_api_sdk\model\BookingRoom($roomData->rates[0]["rateKey"]);
+               $bookingRoom = new BookingRoom($roomData->rates[0]["rateKey"]);
                $bookingRoom->paxes = $paxes;
                $bookRooms[] = $bookingRoom;
 
@@ -231,7 +216,7 @@ class HotelApiClientTest extends PHPUnit_Framework_TestCase
            // Define payment data for booking confirmation
            $rqBookingConfirm->clientReference = "PHP_TEST_2";
            if (!$atWeb) {
-               $rqBookingConfirm->paymentData = new \hotelbeds\hotel_api_sdk\model\PaymentData();
+               $rqBookingConfirm->paymentData = new PaymentData();
 
                $rqBookingConfirm->paymentData->paymentCard = [
                    "cardType" => "VI",
@@ -250,7 +235,7 @@ class HotelApiClientTest extends PHPUnit_Framework_TestCase
            try {
                $confirmRS = $this->apiClient->BookingConfirm($rqBookingConfirm);
                return $confirmRS;
-           } catch (\hotelbeds\hotel_api_sdk\types\HotelSDKException $e) {
+           } catch (HotelSDKException $e) {
                echo "\n".$e->getMessage()."\n";
                echo "\n".$this->apiClient->getLastRequest()->getContent()."\n";
                $this->fail($e->getMessage());

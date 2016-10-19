@@ -20,4 +20,5 @@ interface ApiCallTypes
     const STATUS = "status";
 
     const COUNTRIES = 'locations/countries';
+    const DESTINATIONS = 'locations/destinations';
 }
