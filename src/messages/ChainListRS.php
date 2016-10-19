@@ -9,19 +9,23 @@
 namespace hotelbeds\hotel_api_sdk\messages;
 
 use hotelbeds\hotel_api_sdk\messages\contracts\ContentApiResponse;
-use hotelbeds\hotel_api_sdk\model\content_api\Country;
+use hotelbeds\hotel_api_sdk\model\content_api\Chain;
 
-class CountryListRS extends ContentApiResponse
+/**
+ * Class CategoryListRS
+ * @package hotelbeds\hotel_api_sdk\messages
+ */
+class ChainListRS extends ContentApiResponse
 {
     /**
      * Return the current element
      * @link http://php.net/manual/en/iterator.current.php
-     * @return Country
+     * @return Chain
      * @since 5.0.0
      */
     public function current()
     {
-        return new Country($this->getData()[$this->position()]);
+        return new Chain($this->getData()[$this->position()]);
     }
 
     /**
@@ -30,6 +34,6 @@ class CountryListRS extends ContentApiResponse
      */
     protected function dataKey()
     {
-        return 'countries';
+        return 'chains';
     }
 }

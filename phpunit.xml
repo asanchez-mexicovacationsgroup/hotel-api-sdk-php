@@ -15,5 +15,8 @@
         <testsuite name="content_location">
             <file>tests/ContentApiLocationTest.php</file>
         </testsuite>
+        <testsuite name="content_types">
+            <file>tests/ContentApiTypesTest.php</file>
+        </testsuite>
     </testsuites>
 </phpunit>

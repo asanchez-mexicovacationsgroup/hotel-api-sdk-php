@@ -29,17 +29,6 @@ class DestinationListRS extends ContentApiResponse
     }
 
     /**
-     * Return the key of the current element
-     * @link http://php.net/manual/en/iterator.key.php
-     * @return mixed scalar on success, or null on failure.
-     * @since 5.0.0
-     */
-    public function key()
-    {
-        return $this->getData()[$this->position()]['code'];
-    }
-
-    /**
      * Return the data key for use in iterator
      * @return string
      */

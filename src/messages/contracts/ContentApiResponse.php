@@ -39,6 +39,14 @@ abstract class ContentApiResponse extends ApiResponse implements \Iterator
     }
 
     /**
+     * @return array
+     */
+    protected function currentItemArray()
+    {
+        return $this->getData()[$this->position];
+    }
+
+    /**
      * @return AuditData Return class of audit
      */
     public function auditData()
@@ -96,6 +104,17 @@ abstract class ContentApiResponse extends ApiResponse implements \Iterator
     public function rewind()
     {
         $this->position = 0;
+    }
+
+    /**
+     * Return the key of the current element
+     * @link http://php.net/manual/en/iterator.key.php
+     * @return mixed scalar on success, or null on failure.
+     * @since 5.0.0
+     */
+    public function key()
+    {
+        return $this->position;
     }
 
     /**

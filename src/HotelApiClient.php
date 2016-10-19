@@ -24,11 +24,24 @@
 namespace hotelbeds\hotel_api_sdk;
 
 use hotelbeds\hotel_api_sdk\helpers\ContentApiParams;
+use hotelbeds\hotel_api_sdk\messages\AccommodationListRS;
+use hotelbeds\hotel_api_sdk\messages\BoardListRS;
 use hotelbeds\hotel_api_sdk\messages\BookingCancellationRS;
+use hotelbeds\hotel_api_sdk\messages\CategoryGroupListRS;
+use hotelbeds\hotel_api_sdk\messages\CategoryListRS;
+use hotelbeds\hotel_api_sdk\messages\ChainListRS;
 use hotelbeds\hotel_api_sdk\messages\contracts\ApiRequest;
 use hotelbeds\hotel_api_sdk\messages\contracts\ApiResponse;
 use hotelbeds\hotel_api_sdk\messages\CountryListRS;
+use hotelbeds\hotel_api_sdk\messages\CurrencyListRS;
 use hotelbeds\hotel_api_sdk\messages\DestinationListRS;
+use hotelbeds\hotel_api_sdk\messages\FacilityGroupListRS;
+use hotelbeds\hotel_api_sdk\messages\FacilityListRS;
+use hotelbeds\hotel_api_sdk\messages\FacilityTypologyListRS;
+use hotelbeds\hotel_api_sdk\messages\LanguageListRS;
+use hotelbeds\hotel_api_sdk\messages\PromotionListRS;
+use hotelbeds\hotel_api_sdk\messages\RateCommentListRS;
+use hotelbeds\hotel_api_sdk\messages\SegmentListRS;
 use hotelbeds\hotel_api_sdk\messages\StatusRS;
 
 use hotelbeds\hotel_api_sdk\messages\AvailabilityRS;
@@ -43,6 +56,9 @@ use hotelbeds\hotel_api_sdk\helpers\Booking;
 use hotelbeds\hotel_api_sdk\messages\BookingListRS;
 use hotelbeds\hotel_api_sdk\helpers\BookingList;
 
+use hotelbeds\hotel_api_sdk\messages\TerminalListRS;
+use hotelbeds\hotel_api_sdk\messages\ImageTypeListRS;
+use hotelbeds\hotel_api_sdk\messages\IssueListRS;
 use hotelbeds\hotel_api_sdk\model\AuditData;
 use hotelbeds\hotel_api_sdk\types\ApiUri;
 use hotelbeds\hotel_api_sdk\types\ApiVersion;
@@ -63,6 +79,22 @@ use Zend\Uri\UriFactory;
  * @method BookingListRS BookingList( BookingList $bookData ) To get a list of bookings
  * @method CountryListRS countryList( ContentApiParams $data ) To get a list of countries
  * @method DestinationListRS destinationList(ContentApiParams $data) To get a list of destinations
+ * @method AccommodationListRS accommodationList(ContentApiParams $data) list of accommodations
+ * @method BoardListRS boardList(ContentApiParams $data) list of boards
+ * @method CategoryListRS categoryList(ContentApiParams $data) list of categories
+ * @method ChainListRS chainList(ContentApiParams $data) list of chains
+ * @method CurrencyListRS currencyList(ContentApiParams $data) list of currencies
+ * @method FacilityListRS facilityList(ContentApiParams $data) list of facilities
+ * @method FacilityGroupListRS facilityGroupList(ContentApiParams $data) list of facility groups
+ * @method FacilityTypologyListRS facilityTypologyList(ContentApiParams $data) list of facility typologies
+ * @method IssueListRS issueList(ContentApiParams $data) list of issues
+ * @method LanguageListRS languageList(ContentApiParams $data) list of languages
+ * @method PromotionListRS promotionList(ContentApiParams $data) list of promotions
+ * @method SegmentListRS segmentList(ContentApiParams $data) list of segments
+ * @method TerminalListRS terminalList(ContentApiParams $data) list of terminals
+ * @method ImageTypeListRS imageTypeList(ContentApiParams $data) list of image types
+ * @method CategoryGroupListRS categoryGroupList(ContentApiParams $data) list of category groups
+ * @method RateCommentListRS rateCommentList(ContentApiParams $data) list of rate comments
  */
 class HotelApiClient
 {
