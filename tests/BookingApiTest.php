@@ -37,7 +37,7 @@ class BookingApiTest extends SDKTestCase
         $rqBookingLst->end = \DateTime::createFromFormat("Y-m-d", "2016-04-30");
         $rqBookingLst->from = 1;
         $rqBookingLst->to = 25;
-        return $this->apiClient->bookinglist($rqBookingLst);
+        return $this->apiClient->BookingList($rqBookingLst);
     }
 
     /**

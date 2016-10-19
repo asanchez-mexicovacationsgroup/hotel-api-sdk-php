@@ -159,6 +159,9 @@ class HotelApiClient
 
     public function __call($sdkMethod, array $args=null)
     {
+        // ucfirst class name
+        $sdkMethod = ucfirst($sdkMethod);
+
         $sdkClassRQ = "hotelbeds\\hotel_api_sdk\\messages\\".$sdkMethod."RQ";
         $sdkClassRS = "hotelbeds\\hotel_api_sdk\\messages\\".$sdkMethod."RS";
 
