@@ -1,0 +1,4 @@
+apiclient.url          = https://api.test.hotelbeds.com
+apiclient.apikey       = api_key
+apiclient.sharedsecret = secret
+apiclient.timeout      = 120
