@@ -15,13 +15,13 @@ use hotelbeds\hotel_api_sdk\model\ApiModel;
  * Class Coordinates
  * @package hotelbeds\hotel_api_sdk\model\content_api
  *
- * @property float latitude
- * @property float longitude
+ * @property double latitude
+ * @property double longitude
  */
 class Coordinate extends ApiModel
 {
     protected $validFields = [
-        'latitude' => 'float',
-        'longitude' => 'float',
+        'latitude' => 'double',
+        'longitude' => 'double',
     ];
 }

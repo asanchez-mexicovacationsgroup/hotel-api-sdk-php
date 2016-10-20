@@ -45,4 +45,9 @@ interface ApiCallTypes
     const GROUP_CATEGORIES = '/types/groupcategories';
     const RATE_COMMENTS = '/types/ratecomments';
 
+    /**
+     * Content API Hotel
+     */
+    const HOTELS = '/hotels';
+
 }

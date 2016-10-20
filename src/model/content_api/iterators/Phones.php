@@ -6,28 +6,13 @@
  * Time: 5:23 PM
  */
 
-namespace hotelbeds\hotel_api_sdk\model\content_api;
+namespace hotelbeds\hotel_api_sdk\model\content_api\iterators;
 
 
-class Phones implements \Iterator
+use hotelbeds\hotel_api_sdk\model\content_api\Phone;
+
+class Phones extends BaseIterator
 {
-
-    private $phones;
-    private $position = 0;
-
-    public function __construct(array $phones)
-    {
-        $this->phones = $phones;
-    }
-
-    /**
-     * @return array
-     */
-    public function toArray()
-    {
-        return $this->phones;
-    }
-
     /**
      * Return the current element
      * @link http://php.net/manual/en/iterator.current.php
@@ -36,51 +21,20 @@ class Phones implements \Iterator
      */
     public function current()
     {
-        return new Phone($this->phones[$this->position]);
+        return new Phone($this->data[$this->position]);
     }
 
     /**
-     * Move forward to next element
-     * @link http://php.net/manual/en/iterator.next.php
-     * @return void Any returned value is ignored.
+     * Offset to retrieve
+     * @link http://php.net/manual/en/arrayaccess.offsetget.php
+     * @param mixed $offset <p>
+     * The offset to retrieve.
+     * </p>
+     * @return Phone|null Can return all value types.
      * @since 5.0.0
      */
-    public function next()
+    public function offsetGet($offset)
     {
-        ++$this->position;
-    }
-
-    /**
-     * Return the key of the current element
-     * @link http://php.net/manual/en/iterator.key.php
-     * @return mixed scalar on success, or null on failure.
-     * @since 5.0.0
-     */
-    public function key()
-    {
-        return $this->position;
-    }
-
-    /**
-     * Checks if current position is valid
-     * @link http://php.net/manual/en/iterator.valid.php
-     * @return boolean The return value will be casted to boolean and then evaluated.
-     * Returns true on success or false on failure.
-     * @since 5.0.0
-     */
-    public function valid()
-    {
-        return ($this->position < count($this->phones));
-    }
-
-    /**
-     * Rewind the Iterator to the first element
-     * @link http://php.net/manual/en/iterator.rewind.php
-     * @return void Any returned value is ignored.
-     * @since 5.0.0
-     */
-    public function rewind()
-    {
-        $this->position = 0;
+        return isset($this->data[$offset]) ? new Phone($this->data[$offset]) : null;
     }
 }

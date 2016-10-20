@@ -10,6 +10,14 @@ namespace hotelbeds\hotel_api_sdk\model\content_api;
 
 
 use hotelbeds\hotel_api_sdk\model\ApiModel;
+use hotelbeds\hotel_api_sdk\model\content_api\iterators\HotelFacilities;
+use hotelbeds\hotel_api_sdk\model\content_api\iterators\HotelRooms;
+use hotelbeds\hotel_api_sdk\model\content_api\iterators\HotelTerminals;
+use hotelbeds\hotel_api_sdk\model\content_api\iterators\HotelWildCards;
+use hotelbeds\hotel_api_sdk\model\content_api\iterators\HotelImages;
+use hotelbeds\hotel_api_sdk\model\content_api\iterators\HotelInterestPoints;
+use hotelbeds\hotel_api_sdk\model\content_api\iterators\HotelIssues;
+use hotelbeds\hotel_api_sdk\model\content_api\iterators\Phones;
 
 /**
  * Class Hotel
@@ -32,18 +40,15 @@ use hotelbeds\hotel_api_sdk\model\ApiModel;
  * @property double giataCode Giata code of the hotel, returned only if the client has agreement with Giata
  * @property string license License number of the hotel in their country
  * @property Phones phones The list of contact phones of the hotel
- * @property array issues List of incidences, reparations that the hotel is involved in
- * @property array terminals List of terminals associated to the hotel and their distance to the hotel.
- * @property array facilities List of facilities, amenities and installations in the hotel.
- * @property array boardCodes List of the board types offered at the hotel
+ * @property HotelIssues issues List of incidences, reparations that the hotel is involved in
+ * @property HotelTerminals terminals List of terminals associated to the hotel and their distance to the hotel.
+ * @property HotelFacilities facilities List of facilities, amenities and installations in the hotel.
+ * @property array boardCodes List of the board types offered at the hotel. Occurrences 0..* String 7 Characters
  * @property array segmentCodes List of the internal segments to which the hotel belongs (Business hotel, city hotel,...)
- * @property array interestPoints List of Points of Interest close to the hotel
- * @property array rooms List of available rooms at the hotel
-// * @property array roomFacilities List of facilities, amenities and installations in the room of the hotel.
-// * @property array roomStays List of the different departments in which the room is divided
-// * @property array facilityList List of facilities, amenities and installations in the department of the room.
- * @property array wildcards List of hotel room descriptions
- * @property array images List of hotel pictures
+ * @property HotelInterestPoints interestPoints List of Points of Interest close to the hotel
+ * @property HotelRooms rooms List of available rooms at the hotel
+ * @property HotelWildCards wildcards List of hotel room descriptions
+ * @property HotelImages images List of hotel pictures
  */
 class Hotel extends ApiModel
 {
@@ -56,26 +61,53 @@ class Hotel extends ApiModel
         'countryCode' => 'string',
         'destinationCode' => 'string',
         'zoneCode' => 'integer',
-        'coordinates' => 'Coordinate',
+        'coordinates' => Coordinate::class,
         'categoryCode' => 'string',
         'chainCode' => 'string',
         'description' => TranslatedAttribute::class,
         'address' => TranslatedAttribute::class,
         'postalCod' => 'string',
         'cit' => TranslatedAttribute::class,
-        'emai' => 'string',
+        'email' => 'string',
         'web' => 'string',
         'giataCode' => 'double',
         'license' => 'string',
         'phones' => Phones::class,
-        'issues' => 'array',
-        'terminals' => 'array',
-        'facilities' => 'array',
+        'issues' => HotelIssues::class,
+        'terminals' => HotelTerminals::class,
+        'facilities' => HotelFacilities::class,
         'boardCodes' => 'array',
         'segmentCodes' => 'array',
-        'interestPoints' => 'array',
-        'rooms' => 'array',
-        'wildcards' => 'array',
-        'images' => 'array',
+        'interestPoints' => HotelInterestPoints::class,
+        'rooms' => HotelRooms::class,
+        'wildcards' => HotelWildCards::class,
+        'images' => HotelImages::class,
     ];
+
+    /**
+     * @var array of nullable field names with a default value which will be supplied if they don't exist.
+     */
+    private static $NULLABLE_FIELDS = [
+        'phones' => [],
+        'issues' => [],
+        'terminals' => [],
+        'facilities' => [],
+        'boardCodes' => [],
+        'segmentCodes' => [],
+        'interestPoints' => [],
+        'rooms' => [],
+        'wildcards' => [],
+        'images' => [],
+    ];
+
+    public function __get($field)
+    {
+        if (in_array($field, array_keys(self::$NULLABLE_FIELDS))) {
+            if (!isset($this->sdkFields[$field])) {
+                $this->sdkFields[$field] = self::$NULLABLE_FIELDS[$field];
+            }
+        }
+
+        return parent::__get($field);
+    }
 }

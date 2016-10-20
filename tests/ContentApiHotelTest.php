@@ -25,7 +25,80 @@
 namespace hotelbeds\hotel_api_sdk\Tests;
 
 
+use hotelbeds\hotel_api_sdk\helpers\HotelListParams;
+
 class ContentApiHotelTest extends SDKTestCase
 {
+    public function testHotelList()
+    {
+        $params = new HotelListParams();
+        $params->fields = 'all';
+        $params->from = 0;
+        $params->to = 1;
+        $params->language = 'ENG';
+//        $params->countryCode = 'TUR';
 
+        $hotels = $this->apiClient->hotelList($params);
+        foreach ($hotels as $hotel) {
+            $this->assertNotEmpty($hotel->code);
+            $this->assertNotEmpty($hotel->name->content);
+            $this->assertNotEmpty($hotel->coordinates->latitude);
+            $this->assertNotEmpty($hotel->coordinates->longitude);
+
+
+            foreach ($hotel->phones as $phone) {
+                $this->assertNotEmpty($phone->phoneNumber);
+            }
+
+            foreach ($hotel->issues as $issue) {
+                $this->assertNotEmpty($issue->issueCode);
+            }
+
+            foreach ($hotel->terminals as $terminal) {
+                $this->assertNotEmpty($terminal->terminalCode);
+            }
+
+            foreach ($hotel->facilities as $facility) {
+                $this->assertNotEmpty($facility->facilityCode);
+            }
+
+            foreach ($hotel->boardCodes as $boardCode) {
+                $this->assertNotEmpty($boardCode);
+            }
+
+            foreach ($hotel->segmentCodes as $segmentCode) {
+                $this->assertNotEmpty($segmentCode);
+            }
+
+            foreach ($hotel->interestPoints as $interestPoint) {
+                $this->assertNotEmpty($interestPoint->facilityCode);
+            }
+
+            foreach ($hotel->rooms as $room) {
+                $this->assertNotEmpty($room->roomCode);
+
+                foreach ($room->roomFacilities as $facility) {
+                    $this->assertNotEmpty($facility->facilityCode);
+                }
+
+                foreach ($room->roomStays as $roomStay) {
+                    $this->assertNotEmpty($roomStay->stayType);
+
+                    foreach ($roomStay->facilityList as $facility) {
+                        $this->assertNotEmpty($facility->facilityCode);
+                    }
+                }
+            }
+
+            foreach ($hotel->wildcards as $wildCard) {
+                $this->assertNotEmpty($wildCard->roomType);
+            }
+
+            foreach ($hotel->images as $image) {
+                $this->assertNotEmpty($image->imageTypeCode);
+                $this->assertNotEmpty($image->path);
+            }
+
+        }
+    }
 }

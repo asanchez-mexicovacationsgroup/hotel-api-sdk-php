@@ -18,17 +18,18 @@ namespace hotelbeds\hotel_api_sdk\helpers;
  * @property string $language Language Code in which you want the descriptions to be returned. If it is not indicated English is the default language.
  * @property integer $from Number of the initial record to receive, if nothing is indicated 1 is the default value.
  * @property integer $to Number of the final record to receive, if nothing is indicated 100 is the default value.
+ * @property string useSecondaryLanguage "True" if you want to receive the descriptions in English if the description is not available in the language requested. "False" (default value) if you dont want to receive the description in English if the language requested is not available.
  */
 class ContentApiParams extends ApiHelper
 {
     public function __construct()
     {
-        $this->validFields = [
+        $this->validFields = array_merge($this->validFields, [
             'fields' => 'string',
             'lastUpdateTime' => 'string',
             'language' => 'string',
             "from" => "integer",
             "to" => "integer",
-        ];
+        ]);
     }
 }

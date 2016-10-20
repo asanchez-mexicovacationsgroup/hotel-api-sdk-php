@@ -13,26 +13,8 @@ use hotelbeds\hotel_api_sdk\model\content_api\Comment;
  * Class Comments
  * @package hotelbeds\hotel_api_sdk\model\content_api\iterators
  */
-class Comments implements \Iterator
+class Comments extends BaseIterator
 {
-    private $comments;
-    private $position = 0;
-
-    public function __construct(array $comments)
-    {
-        $this->comments = $comments;
-    }
-
-    /**
-     * Group zones array
-     *
-     * @return array Group zones array
-     */
-    public function toArray()
-    {
-        return $this->comments;
-    }
-
     /**
      * Return the current element
      * @link http://php.net/manual/en/iterator.current.php
@@ -41,51 +23,20 @@ class Comments implements \Iterator
      */
     public function current()
     {
-        return new Comment($this->comments[$this->position]);
+        return new Comment($this->data[$this->position]);
     }
 
     /**
-     * Move forward to next element
-     * @link http://php.net/manual/en/iterator.next.php
-     * @return void Any returned value is ignored.
+     * Offset to retrieve
+     * @link http://php.net/manual/en/arrayaccess.offsetget.php
+     * @param mixed $offset <p>
+     * The offset to retrieve.
+     * </p>
+     * @return Comment Can return all value types.
      * @since 5.0.0
      */
-    public function next()
+    public function offsetGet($offset)
     {
-        ++$this->position;
-    }
-
-    /**
-     * Return the key of the current element
-     * @link http://php.net/manual/en/iterator.key.php
-     * @return mixed scalar on success, or null on failure.
-     * @since 5.0.0
-     */
-    public function key()
-    {
-        return $this->position;
-    }
-
-    /**
-     * Checks if current position is valid
-     * @link http://php.net/manual/en/iterator.valid.php
-     * @return boolean The return value will be casted to boolean and then evaluated.
-     * Returns true on success or false on failure.
-     * @since 5.0.0
-     */
-    public function valid()
-    {
-        return ($this->position < count($this->comments));
-    }
-
-    /**
-     * Rewind the Iterator to the first element
-     * @link http://php.net/manual/en/iterator.rewind.php
-     * @return void Any returned value is ignored.
-     * @since 5.0.0
-     */
-    public function rewind()
-    {
-        $this->position = 0;
+        return isset($this->data[$offset]) ? new Comment($this->data[$offset]) : null;
     }
 }
