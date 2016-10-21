@@ -17,7 +17,7 @@ use hotelbeds\hotel_api_sdk\model\ApiModel;
  *
  * @property string code Board Type Code that will indicate the meal plans available at the hotel (bed and breakfast, half board, all inclusive,...)
  * @property TranslatedAttribute description Internal board description and language
- * @property TranslatedAttribute multiLingualCode Multilanguage Board Description
+ * @property string|null multiLingualCode Multilanguage Board Description
  */
 class Board extends ApiModel
 {
@@ -26,6 +26,6 @@ class Board extends ApiModel
     protected $validFields = [
         'code' => 'string',
         'description' => TranslatedAttribute::class,
-        'multiLingualCode' => TranslatedAttribute::class,
+        'multiLingualCode' => 'string',
     ];
 }
