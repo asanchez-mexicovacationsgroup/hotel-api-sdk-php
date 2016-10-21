@@ -26,7 +26,6 @@ abstract class ContentApiResponse extends ApiResponse implements \Iterator
     public function __construct(array $rsData)
     {
         parent::__construct($rsData);
-        $this->data = $rsData;
     }
 
     /**
