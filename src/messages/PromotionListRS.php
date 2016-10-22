@@ -10,7 +10,7 @@ namespace hotelbeds\hotel_api_sdk\messages;
 
 
 use hotelbeds\hotel_api_sdk\messages\contracts\ContentApiResponse;
-use hotelbeds\hotel_api_sdk\model\Promotion;
+use hotelbeds\hotel_api_sdk\model\content_api\Promotion;
 
 class PromotionListRS extends ContentApiResponse
 {
