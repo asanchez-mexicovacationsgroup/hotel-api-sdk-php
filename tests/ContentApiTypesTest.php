@@ -261,4 +261,19 @@ class ContentApiTypesTest extends SDKTestCase
             $this->assertNotEmpty($rateComment->code);
         }
     }
+
+    public function testRoomTypeList()
+    {
+        $data = new ContentApiParams();
+        $data->fields = 'all';
+        $data->language = 'ENG';
+        $data->from = 0;
+        $data->to = 100;
+
+        $response = $this->apiClient->roomTypeList($data);
+
+        foreach ($response as $roomType) {
+            $this->assertNotEmpty($roomType->code);
+        }
+    }
 }

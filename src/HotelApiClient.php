@@ -43,6 +43,7 @@ use hotelbeds\hotel_api_sdk\messages\HotelListRS;
 use hotelbeds\hotel_api_sdk\messages\LanguageListRS;
 use hotelbeds\hotel_api_sdk\messages\PromotionListRS;
 use hotelbeds\hotel_api_sdk\messages\RateCommentListRS;
+use hotelbeds\hotel_api_sdk\messages\RoomTypeListRS;
 use hotelbeds\hotel_api_sdk\messages\SegmentListRS;
 use hotelbeds\hotel_api_sdk\messages\StatusRS;
 
@@ -97,6 +98,7 @@ use Zend\Uri\UriFactory;
  * @method ImageTypeListRS imageTypeList(ContentApiParams $data) list of image types
  * @method CategoryGroupListRS categoryGroupList(ContentApiParams $data) list of category groups
  * @method RateCommentListRS rateCommentList(ContentApiParams $data) list of rate comments
+ * @method RoomTypeListRS roomTypeList(ContentApiParams $data) list of available room types
  * @method HotelListRS hotelList(HotelListParams $data) list of hotel list
  */
 class HotelApiClient
