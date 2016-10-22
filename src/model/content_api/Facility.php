@@ -26,7 +26,7 @@ class Facility extends ApiModel
 
     protected $validFields = [
         'code' => 'string',
-        'facilityGroupCode' => TranslatedAttribute::class,
+        'facilityGroupCode' => 'string',
         'facilityTypologyCode' => 'string',
         'description' => TranslatedAttribute::class,
     ];
