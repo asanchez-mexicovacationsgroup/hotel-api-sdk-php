@@ -26,5 +26,6 @@ class Boards extends ApiModel
         $this->validFields = [
             'board' => 'array',
             'included' => 'boolean'
-        ]; }
+        ];
+    }
 }
