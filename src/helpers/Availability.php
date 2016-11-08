@@ -24,6 +24,7 @@ use hotelbeds\hotel_api_sdk\model\Stay;
  * @property boolean $dailyRate Display the rate day by day
  * @property string $language Language of the response
  * @property Filter $filter Filters for availability
+ * @property Boards $boards
  */
 
 class Availability extends ApiHelper
@@ -40,6 +41,7 @@ class Availability extends ApiHelper
                 "destination" => "hotelbeds\\hotel_api_sdk\\model\\Destination",
                 "keywords" => "array",
                 "hotels" => "array",
+                "boards" => Boards::class,
                 "board" => "string",
                 "sourceMarket" => "string",
                 "dailyRate" => "boolean",
