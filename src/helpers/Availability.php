@@ -25,6 +25,7 @@ use hotelbeds\hotel_api_sdk\model\Stay;
  * @property string $language Language of the response
  * @property Filter $filter Filters for availability
  * @property Boards $boards
+ * @property array $accommodations
  */
 
 class Availability extends ApiHelper
@@ -46,7 +47,8 @@ class Availability extends ApiHelper
                 "sourceMarket" => "string",
                 "dailyRate" => "boolean",
                 "language" => "string",
-                "filter" => "hotelbeds\\hotel_api_sdk\\model\\Filter"
+                "filter" => "hotelbeds\\hotel_api_sdk\\model\\Filter",
+                "accommodations" => 'array'
                 ];
     }
 }
