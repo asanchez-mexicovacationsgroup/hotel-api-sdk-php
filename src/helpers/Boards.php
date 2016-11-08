@@ -14,16 +14,17 @@ use hotelbeds\hotel_api_sdk\model\ApiModel;
 /**
  * Class Boards
  * @package hotelbeds\hotel_api_sdk\helpers
- * @property array boards
+ * @property array board
  * @property boolean included
  */
 class Boards extends ApiModel
 {
-    public function __construct($data)
+    public function __construct()
     {
+        parent::__construct();
+
         $this->validFields = [
-            'boards' => 'array',
+            'board' => 'array',
             'included' => 'boolean'
-        ];
-    }
+        ]; }
 }
