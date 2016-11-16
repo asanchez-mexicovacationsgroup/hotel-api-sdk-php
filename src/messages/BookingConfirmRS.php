@@ -15,6 +15,7 @@ use hotelbeds\hotel_api_sdk\model\Booking;
 /**
  * Class BookingConfirmRS
  * @package hotelbeds\hotel_api_sdk\messages
+ * @property Booking $booking
  */
 class BookingConfirmRS extends ApiResponse
 {
