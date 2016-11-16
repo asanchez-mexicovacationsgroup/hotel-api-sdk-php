@@ -28,16 +28,17 @@ class Filter extends ApiModel
     public function __construct()
     {
         $this->validFields =
-            ["maxHotels" => "integer",
-             "maxRooms" => "integer",
-             "maxRatesPerRoom" => "integer",
-             "minRate" => "float",
-             "maxRate" => "float",
-             "packaging" => "boolean",
-             "paymentType" => "string",
-             "hotelPackage" => "string",
-             "minCategory" => "integer",
-             "maxCategory" => "integer",
+            [
+                "maxHotels" => "integer",
+                "maxRooms" => "integer",
+                "maxRatesPerRoom" => "integer",
+                "minRate" => "float",
+                "maxRate" => "float",
+                "packaging" => "boolean",
+                "paymentType" => "string",
+                "hotelPackage" => "string",
+                "minCategory" => "integer",
+                "maxCategory" => "integer",
             ];
     }
 }
