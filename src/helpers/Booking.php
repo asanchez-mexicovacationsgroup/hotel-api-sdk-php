@@ -14,22 +14,32 @@ use hotelbeds\hotel_api_sdk\model\PaymentData;
 /**
  * Class Booking
  * @package hotelbeds\hotel_api_sdk\helpers
- * @property Holder holder Booking holder information element
- * @property array rooms List of the rooms to be confirmed.
- * @property string clientReference Your internal booking reference or comments
- * @property PaymentData paymentData Payment information. This node must be used if paymentType = 'AT_HOTEL'
- * @property string language Response language 
+ * @property string reference
+ * @property string creationDate
+ * @property float totalAmount
+ * @property string currency
+ * @property string status
+ * @property array holder
+ * @property float commisionVAT
+ * @property array modificationPolicies
  */
 class Booking extends ApiHelper
 {
     public function __construct()
     {
         $this->validFields = [
-            "language" => "string",
-            "holder" => "hotelbeds\\hotel_api_sdk\\model\\Holder",
-            "rooms" => "array",
-            "clientReference" => "string",
-            "paymentData" => "hotelbeds\\hotel_api_sdk\\model\\PaymentData"
+            "reference" => "string",
+            "creationDate" => "string",
+            "totalAmount" => "float",
+            "currency" => "string",
+            "status" => "string",
+            "holder" => "array",
+            "commisionVAT" => "float",
+            "remark" => "string",
+            "hotel" => "array",
+            'clientReference' => 'string',
+            'totalNet' => 'float',
+            'modificationPolicies' => 'array'
         ];
     }
 }
