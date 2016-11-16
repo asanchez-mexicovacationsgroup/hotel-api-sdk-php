@@ -11,7 +11,14 @@ namespace hotelbeds\hotel_api_sdk\model;
 /**
  * Class Booking
  * @package hotelbeds\hotel_api_sdk\model
- * @property
+ * @property string reference
+ * @property string creationDate
+ * @property float totalAmount
+ * @property string currency
+ * @property string status
+ * @property array holder
+ * @property float commisionVAT
+ * @property array modificationPolicies
  */
 class Booking extends ApiModel
 {
@@ -30,7 +37,10 @@ class Booking extends ApiModel
             "holder" => "array",
             "commisionVAT" => "float",
             "remark" => "string",
-            "hotel" => "array"
+            "hotel" => "array",
+            'clientReference' => 'string',
+            'totalNet' => 'float',
+            'modificationPolicies' => 'array'
         ];
 
         if ($data !== null)
