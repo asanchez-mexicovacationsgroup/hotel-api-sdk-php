@@ -17,7 +17,7 @@ use hotelbeds\hotel_api_sdk\model\ApiModel;
  *
  * @property string dateStart Date in which the comment start to apply
  * @property string dateEnd Date in which the comment ends
- * @property TranslatedAttribute description Rate comments description and language
+ * @property string description Rate comments description and language
  */
 class Comment extends ApiModel
 {
@@ -26,6 +26,6 @@ class Comment extends ApiModel
     protected $validFields = [
         'dateStart' => 'string',
         'dateEnd' => 'string',
-        'description' => TranslatedAttribute::class,
+        'description' => 'string',
     ];
 }
