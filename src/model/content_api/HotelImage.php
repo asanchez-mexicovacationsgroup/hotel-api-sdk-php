@@ -15,6 +15,7 @@ use hotelbeds\hotel_api_sdk\model\ApiModel;
  * Class HotelImage
  * @package hotelbeds\hotel_api_sdk\model\content_api
  * @property string imageTypeCode Specifies where has the picture been taken (you can see the possible values in the response of types/imagetypes operation).
+ * @property array type
  * @property string path URL of the image. For hotel images, we do not return the full path. Note that one of the following paths must be added by the client.
  * @property integer order Order in which the images are shown in the web page
  * @property string roomCode Identifier of the room type
@@ -30,5 +31,6 @@ class HotelImage extends ApiModel
         'roomCode' => 'string',
         'roomType' => 'string',
         'characteristicCode' => 'string',
+        'type' => 'array',
     ];
 }
