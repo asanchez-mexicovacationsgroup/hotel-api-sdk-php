@@ -10,6 +10,7 @@ namespace hotelbeds\hotel_api_sdk\Tests;
 
 
 use hotelbeds\hotel_api_sdk\helpers\ContentApiParams;
+use hotelbeds\hotel_api_sdk\helpers\RateCommentDetailParams;
 use hotelbeds\hotel_api_sdk\messages\AccommodationListRS;
 
 class ContentApiTypesTest extends SDKTestCase
@@ -274,6 +275,20 @@ class ContentApiTypesTest extends SDKTestCase
 
         foreach ($response as $roomType) {
             $this->assertNotEmpty($roomType->code);
+        }
+    }
+
+    public function testRateCommentDetails()
+    {
+        $data = new RateCommentDetailParams();
+        $data->code = '77|12619|0';
+        $data->date = '2016-11-25';
+        $data->language = 'ENG';
+
+        $response = $this->apiClient->rateCommentDetails($data);
+
+        foreach ($response as $commentDetail) {
+            echo $commentDetail->description . PHP_EOL;
         }
     }
 }

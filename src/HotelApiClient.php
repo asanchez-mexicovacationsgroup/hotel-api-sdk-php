@@ -25,6 +25,7 @@ namespace hotelbeds\hotel_api_sdk;
 
 use hotelbeds\hotel_api_sdk\helpers\ContentApiParams;
 use hotelbeds\hotel_api_sdk\helpers\HotelListParams;
+use hotelbeds\hotel_api_sdk\helpers\RateCommentDetailParams;
 use hotelbeds\hotel_api_sdk\messages\AccommodationListRS;
 use hotelbeds\hotel_api_sdk\messages\BoardListRS;
 use hotelbeds\hotel_api_sdk\messages\BookingCancellationRS;
@@ -42,6 +43,7 @@ use hotelbeds\hotel_api_sdk\messages\FacilityTypologyListRS;
 use hotelbeds\hotel_api_sdk\messages\HotelListRS;
 use hotelbeds\hotel_api_sdk\messages\LanguageListRS;
 use hotelbeds\hotel_api_sdk\messages\PromotionListRS;
+use hotelbeds\hotel_api_sdk\messages\RateCommentDetailsRS;
 use hotelbeds\hotel_api_sdk\messages\RateCommentListRS;
 use hotelbeds\hotel_api_sdk\messages\RoomTypeListRS;
 use hotelbeds\hotel_api_sdk\messages\SegmentListRS;
@@ -98,6 +100,7 @@ use Zend\Uri\UriFactory;
  * @method ImageTypeListRS imageTypeList(ContentApiParams $data) list of image types
  * @method CategoryGroupListRS categoryGroupList(ContentApiParams $data) list of category groups
  * @method RateCommentListRS rateCommentList(ContentApiParams $data) list of rate comments
+ * @method RateCommentDetailsRS rateCommentDetails(RateCommentDetailParams $data) rate comment details
  * @method RoomTypeListRS roomTypeList(ContentApiParams $data) list of available room types
  * @method HotelListRS hotelList(HotelListParams $data) list of hotel list
  */
