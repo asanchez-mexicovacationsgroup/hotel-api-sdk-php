@@ -24,6 +24,7 @@
 
 namespace hotelbeds\hotel_api_sdk\Tests;
 
+use hotelbeds\hotel_api_sdk\helpers\BookingCancellation;
 use hotelbeds\hotel_api_sdk\helpers\BookingList;
 use hotelbeds\hotel_api_sdk\messages\BookingListRS;
 use hotelbeds\hotel_api_sdk\types\HotelSDKException;
@@ -33,8 +34,8 @@ class BookingApiTest extends SDKTestCase
     public function testBookingList()
     {
         $rqBookingLst = new BookingList();
-        $rqBookingLst->start = \DateTime::createFromFormat("Y-m-d", "2016-04-01");
-        $rqBookingLst->end = \DateTime::createFromFormat("Y-m-d", "2016-04-30");
+        $rqBookingLst->start = \DateTime::createFromFormat("Y-m-d", "2017-01-01");
+        $rqBookingLst->end = \DateTime::createFromFormat("Y-m-d", "2017-01-30");
         $rqBookingLst->from = 1;
         $rqBookingLst->to = 25;
         return $this->apiClient->BookingList($rqBookingLst);
@@ -49,12 +50,10 @@ class BookingApiTest extends SDKTestCase
         $firstBooking = null;
         // Check is response is empty or not
         $this->assertFalse($bkListRS->isEmpty(), "Booking list is empty!");
-        foreach ($bkListRS->bookings->iterator() as $reference => $booking)
-        {
+        foreach ($bkListRS->bookings->iterator() as $reference => $booking) {
             $this->assertNotEmpty($reference);
             $this->assertNotEmpty($booking->creationDate);
             if ($booking->status === "CONFIRMED") {
-                print_r($booking);
                 $firstBooking = $booking->reference;
             }
         }
@@ -68,12 +67,15 @@ class BookingApiTest extends SDKTestCase
 
     public function testBookingCancellation($bookingId)
     {
-           try {
-                $this->apiClient->bookingCancellation($bookingId);
-           } catch (HotelSDKException $e) {
-               echo "\n".$e->getMessage()."\n";
-               $this->fail($e->getMessage());
-           }
+        try {
+            $bookingCancellation = new BookingCancellation();
+            $bookingCancellation->bookingReference = $bookingId;
+
+            $this->apiClient->bookingCancellation($bookingCancellation);
+        } catch (HotelSDKException $e) {
+            echo "\n" . $e->getMessage() . "\n";
+            $this->fail($e->getMessage());
+        }
     }
 
     protected function tearDown()

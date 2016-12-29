@@ -23,6 +23,7 @@
 
 namespace hotelbeds\hotel_api_sdk;
 
+use hotelbeds\hotel_api_sdk\helpers\BookingCancellation;
 use hotelbeds\hotel_api_sdk\helpers\ContentApiParams;
 use hotelbeds\hotel_api_sdk\helpers\HotelListParams;
 use hotelbeds\hotel_api_sdk\helpers\RateCommentDetailParams;
@@ -80,7 +81,7 @@ use Zend\Uri\UriFactory;
  * @method AvailabilityRS Availability(Availability $availData) Do availability accommodation request
  * @method CheckRateRS CheckRate(CheckRate $rateData) Check different room rates for booking
  * @method BookingConfirmRS BookingConfirm(Booking $bookingData) Method allows confirmation of the rate keys selected.  There is an option of confirming more than one rate key for the same hotel/room/board.
- * @method BookingCancellationRS BookingCancellation( $bookingId ) Method can cancel confirmed booking
+ * @method BookingCancellationRS bookingCancellation( BookingCancellation $bookingCancellation ) Method can cancel confirmed booking
  * @method BookingListRS BookingList( BookingList $bookData ) To get a list of bookings
  * @method CountryListRS countryList( ContentApiParams $data ) To get a list of countries
  * @method DestinationListRS destinationList(ContentApiParams $data) To get a list of destinations
